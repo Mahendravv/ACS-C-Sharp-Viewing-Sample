@@ -1,0 +1,144 @@
+/* page list specific */
+
+.pccViewerControl {
+    /* promote to a new layer */
+    -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+    /* iOS momentum scrolling */
+    -webkit-overflow-scrolling: touch;
+    /* helps touch zoom not overlap any other element */
+    overflow: hidden;
+}
+/* normalize override */
+svg:not(:root) {overflow:visible!important;}
+
+.pccPageListContainer{
+    box-sizing:border-box;
+}
+.pccPageListComments {
+    position: relative;
+    min-width: 300px;
+    height: auto;
+    vertical-align: top;
+    display: table-cell;
+    box-sizing: border-box;
+    z-index: 0;
+}
+
+.pccPageListComments > div {
+    position: absolute;   
+}
+
+.pccHidden {
+    display: none;
+}
+
+.pccPageListItem {
+    background: #fff;
+    overflow: hidden;
+    margin: 13px;
+    vertical-align: middle;
+    border-bottom: 1px solid #d4d6db;
+}
+
+/* Single Page view mode */
+.pccSinglePageView .pccPageListItem {
+    -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+    -webkit-animation-duration: 1s;
+            animation-duration: 1s;
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;    
+}
+
+/* Next and previous page list items for single page view mode */
+.pccSinglePageView .pccNextPage {opacity:0;z-index:0;}
+.pccSinglePageView .pccPreviousPage {opacity:0;z-index:0;}
+.pccSinglePageView .pccCurrentPage {opacity:1;z-index:1;}
+
+/* Default animations for single page view mode */
+.pccSinglePageView .pccNextPageIn { animation-name:moveInFromRight;-webkit-animation-name:moveInFromRight;}
+.pccSinglePageView .pccPreviousPageIn {animation-name:moveInFromLeft;-webkit-animation-name:moveInFromLeft;}
+.pccSinglePageView .pccPageForward {animation-name:moveLeft;-webkit-animation-name:moveLeft;}
+.pccSinglePageView .pccPageBack {animation-name:moveRight;-webkit-animation-name:moveRight;}
+@keyframes moveRight {0% {transform: translate3d(0, 0, 0); opacity:1;} 100% {transform: translate3d(110%, 0, 0); opacity:0;}}
+@-webkit-keyframes moveRight {0% {-webkit-transform: translate3d(0, 0, 0); opacity:1;} 100% {-webkit-transform: translate3d(110%, 0, 0); opacity:0;}}
+@keyframes moveLeft {0% {transform: translate3d(0, 0, 0); opacity:1;} 100% {transform: translate3d(-110%, 0, 0); opacity:0;}}
+@-webkit-keyframes moveLeft {0% {-webkit-transform: translate3d(0, 0, 0); opacity:1;} 100% {-webkit-transform: translate3d(-110%, 0, 0); opacity:0;}}
+@keyframes moveInFromLeft {0% {transform: translate3d(-110%, 0, 0); opacity:0;} 100% {transform: translate3d(0, 0, 0); opacity:1;}}
+@-webkit-keyframes moveInFromLeft {0% {-webkit-transform: translate3d(-110%, 0, 0); opacity:0;} 100% {-webkit-transform: translate3d(0, 0, 0); opacity:1;}}
+@keyframes moveInFromRight {0% {transform: translate3d(110%, 0, 0); opacity:0;} 100% {transform: translate3d(0, 0, 0); opacity:1;}}
+@-webkit-keyframes moveInFromRight {0% {-webkit-transform: translate3d(110%, 0, 0); opacity:0;} 100% {-webkit-transform: translate3d(0, 0, 0); opacity:1;}}
+
+/*
+.pccPageListItem * {
+    -ms-touch-action: pinch-zoom pan-x pan-y;
+    touch-action: pinch-zoom pan-x pan-y;
+} */
+
+.pccPageListItem .pccPageListItemLoading {margin:30% auto;display:block;filter:Alpha(Opacity=50);background-color:#fff}
+.pccPageListItem .pccPageLoadFail {margin:35% auto;text-align:center;line-height:2;color:#777;}
+
+/* PageList container fix */
+.pccPageListItem .igAnchor,
+.pccPageListItem .igViewerScroller,
+.pccPageListItem .igViewerGraphics{
+    /* never recalculate these values */
+    width: 100% !important;
+    height: 100% !important;
+}
+.igAnchor > svg{ 
+    width: 100%; 
+    height: 100%;
+}
+.igMagnifierFrame .igAnchor > svg { width: auto; height: auto; }
+.igAnchor, .igAnchor > svg, .igAnchor svg svg {
+    -webkit-user-select: none !important;
+    -webkit-touch-callout: none !important;
+}
+
+/* do not show textarea outline on text marks */
+.pccViewerControl textarea {outline:none;}
+
+/* copy text */
+.pccCopyText {position:absolute;top:0;left:0;z-index:0;width:1px;height:1px;overflow:hidden;opacity:0;filter:alpha(opacity=0);}
+
+/* about modal */
+.pccPageListAboutModal {background:#383a3f;position:absolute;top:-300px;left:0;right:0;
+    margin:0 auto;width:280px;padding:10px;visibility:hidden;opacity:0;z-index:5;border-radius:3px;
+    text-align:center;
+    -webkit-box-shadow:0 2px 4px -1px rgba(0, 0, 0, .4);
+            box-shadow:0 2px 4px -1px rgba(0, 0, 0, .4);
+    -webkit-transition:all 400ms;
+            transition:all 400ms}
+.pccPageListAboutModal * {text-align:left;font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+    -webkit-text-size-adjust:100%;
+        -ms-text-size-adjust:100%;
+            text-size-adjust:100%}
+.pccPageListAboutModal h3 {margin:10px 0;font-size:18px;color:#fff;font-weight:bold}
+.pccPageListAboutModal p {font-size:12px;color:#c2c5ce}
+.pccPageListAboutModal p:last-child {color:#9fa2aa}
+.pccPageListAboutModal a {color:#afc3eb}
+html .pccPageListAboutModal button {position:absolute;top:0;right:0;font-size:20px;color:#fff;
+    background:none;border:none;-webkit-box-shadow:none;box-shadow:none}
+.pccPageListAboutModal.open {visibility:visible;opacity:1;top:122px}
+
+.pccEditMarkButton {
+    display: inline-block;
+    background: no-repeat url(../img/EditTextMark.png);
+    border: none;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+    height: 26px;
+    width: 26px;
+    -webkit-background-size: 26px 26px;
+            background-size: 26px;
+    cursor: pointer !important;
+}
+
+/* svg elements can have body tags inside them, so we protect styling of them */
+/* viewer marks that do not look correct can likely be affected by conflicting styles */
+.pccViewerControl body {
+    background-color: initial;
+    min-height: initial;
+}

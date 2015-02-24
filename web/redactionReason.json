@@ -1,0 +1,9 @@
+{
+    "autoApplyDefaultReason": true,
+    "enableRedactionReasonSelection": true,
+    "reasons": [
+        {"reason": "Client Privilege"},
+        {"reason": "Privacy Information"},
+        {"reason": "Redacted"}
+    ]
+}

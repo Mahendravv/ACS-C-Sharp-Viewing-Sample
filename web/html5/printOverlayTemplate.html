@@ -1,0 +1,149 @@
+<div class="pcc-overlay-inner">
+    <button class="pcc-overlay-closer" data-pcc-print="cancel">&#215;</button>
+
+    <% if (typeof(show) !== 'undefined' && show === 'form') { %>
+        <div class="pcc-row">
+            <div class="pcc-col-6">
+                <div class="pcc-row">
+                    <h4><%= printPages %></h4>
+                </div>
+                <div class="pcc-row">
+                    <div data-pcc-radio="printPage" data-pcc-print-page="printAllPages" class="pcc-checked">
+                        <span></span><label><%= printAll %></label>
+                    </div>
+                </div>
+                <div class="pcc-row">
+                    <div data-pcc-radio="printPage" data-pcc-print-page="printCurrentPage">
+                        <span></span><label><%= printCurrent %></label>
+                    </div>
+                </div>
+                <div class="pcc-row">
+                    <div data-pcc-radio="printPage" data-pcc-print-page="printRange">
+                        <span></span><label><%= printRange %></label>
+                    </div>
+                </div>
+                <div class="pcc-row">
+                    <input type="text" data-pcc-print="range" class="pcc-full" placeholder="<%= rangePlaceholder %>">
+                </div>
+            </div>
+            <div class="pcc-col-6">
+                <div class="pcc-row">
+                    <h4><%= printOrientation %></h4>
+                </div>
+                <div class="pcc-row">
+                    <div data-pcc-radio="printOrientation" data-pcc-print-orientation="portrait" class="pcc-checked">
+                        <span></span><label><%= printPortrait %></label>
+                    </div>
+                </div>
+                <div class="pcc-row">
+                    <div data-pcc-radio="printOrientation" data-pcc-print-orientation="landscape">
+                        <span></span><label><%= printLandscape %></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="pcc-row">
+            <div class="pcc-col-6">
+                <div class="pcc-row">
+                    <h4><%= printAutoFitMargins %></h4>
+                </div>
+                <div class="pcc-row">
+                    <div data-pcc-radio="printMargins" data-pcc-print-margins="true" class="pcc-checked">
+                        <span></span><label><%= printOn %></label>
+                    </div>
+                </div>
+                <div class="pcc-row">
+                    <div data-pcc-radio="printMargins" data-pcc-print-margins="false">
+                        <span></span><label><%= printOff %></label>
+                    </div>
+                </div>
+            </div>
+            <div class="pcc-col-6">
+                <% if (canPrintMarks) { %>
+                    <div class="pcc-row">
+                        <h4><%= printAnnotations %></h4>
+                    </div>
+                    <div class="pcc-row">
+                        <div data-pcc-radio="printAnnotations" data-pcc-print-annotations="true" class="pcc-checked">
+                            <span></span><label><%= printOn %></label>
+                        </div>
+                    </div>
+                    <div class="pcc-row">
+                        <div data-pcc-radio="printAnnotations" data-pcc-print-annotations="false">
+                            <span></span><label><%= printOff %></label>
+                        </div>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+        <div class="pcc-row">
+            <div class="pcc-col-6">
+                <% if (canPrintMarks) { %>
+                <div class="pcc-row">
+                    <h4><%= printComments %></h4>
+                </div>
+                <div class="pcc-row">
+                    <div data-pcc-radio="printComments"
+                        data-pcc-print-comments="none" class="pcc-checked">
+                        <span></span><label><%= printCommentsNone %></label>
+                    </div>
+                </div>                
+                <div class="pcc-row">
+                    <div data-pcc-radio="printComments"
+                        data-pcc-print-comments="followingPage">
+                        <span></span><label><%= printCommentsAfterEachPage %></label>
+                    </div>
+                </div>
+                <div class="pcc-row">
+                    <div data-pcc-radio="printComments"
+                        data-pcc-print-comments="documentEnd">
+                        <span></span><label><%= printCommentsAtEnd %></label>
+                    </div>
+                </div>
+                <% } %>
+            </div>
+            <div class="pcc-col-6">
+                <% if (canPrintMarks) { %>
+                <div class="pcc-row">
+                    <h4><%= printReasons %></h4>
+                </div>
+                <div class="pcc-row">
+                    <div data-pcc-radio="printReasons"
+                        data-pcc-print-reasons="none" class="pcc-checked" >
+                        <span></span><label><%= printReasonsNone %></label>
+                    </div>
+                </div>                
+                <div class="pcc-row">
+                    <div data-pcc-radio="printReasons"
+                        data-pcc-print-reasons="followingPage">
+                        <span></span><label><%= printReasonsAfterEachPage %></label>
+                    </div>
+                </div>
+                <div class="pcc-row">
+                    <div data-pcc-radio="printReasons"
+                        data-pcc-print-reasons="documentEnd">
+                        <span></span><label><%= printReasonsAtEnd %></label>
+                    </div>
+                </div>
+                <% } %>
+            </div>            
+        </div>  
+
+    <button data-pcc-print="submit" class="pcc-center"><%= printButton %></button>
+
+    <% } else { %>
+
+        <div class="pcc-row">
+            <div data-pcc-print="resultCount"><%= printPreparingPage %></div>
+        </div>
+        <div class="pcc-row pcc-percent">
+            <div class="pcc-label">
+                <div class="pcc-load"></div>
+                <div data-pcc-print="resultPercent"></div>
+            </div>
+            <div data-pcc-print="loader" class="pcc-bar"></div>
+        </div>
+        <button data-pcc-print="cancel" class="pcc-center"><%= cancelButton %></button>
+
+    <% } %>
+</div>

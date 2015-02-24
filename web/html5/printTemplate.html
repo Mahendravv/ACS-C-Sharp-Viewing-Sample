@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html moznomarginboxes mozdisallowselectionprint>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">-->
+
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/viewercontrol.css">
+
+    <!--[if lt IE 9]>
+        <link rel="stylesheet" href="css/legacy.css">
+        <script src="js/selectivizr.js"></script>
+        <script src="js/html5shiv.js"></script>
+    <![endif]-->
+
+    <script src="js/viewercontrol.js"></script>
+
+    <style type="text/css">
+        html, body{ margin: 0px; padding: 0px; }
+
+        .portrait .page { width: 8.5in; height: 11in; margin: 0 auto !important; }
+        .portrait .pageIE { width: 7.3in; height: 9.5in; margin: 0 auto !important; }
+        .portrait .pageSafari { width: 6.9in; height: 8.9in; margin: 0 auto !important; }
+        .portrait .nomargins { width: 8.5in !important; height: 11in !important; }
+        /* even without margins, Safari enforces the printer's non-printable area */
+        .portrait .nomargins.pageSafari { width: 7.2in !important; height: 9.32in !important; }
+
+        .landscape .page { height: 8.5in; width: 11in; margin: 0 auto !important; }
+        .landscape .pageIE { height: 7in; width: 9.05in; margin: 0 auto !important; }
+        .landscape .pageSafari { height: 6.5in; width: 8.4in; margin: 0 auto !important; }
+        .landscape .nomargins { height: 8.5in !important; width: 11in !important; }
+        .landscape .nomargins.pageSafari { height: 7.2in !important; width: 9.32in !important; }
+
+        .igAnchor, .igViewerGraphics, .igViewerScroller{
+            width: 100% !important; height: 100% !important;
+        }
+
+        @page {
+            size: {{orientation}};
+            margin: 0cm;
+            white-space: pre;
+        }
+
+        .commentPage, .reasonPage {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0 .25in 0 .25in !important;
+            page-break-after: always;
+        }
+
+        .commentPage h1, .reasonPage h1 {
+            font-size: 28px;
+            margin: .25in 0 0 0 !important;
+            padding: 0;
+        }
+
+        .commentPage ul, .reasonPage ul {
+            font-size: 14px;
+            font-weight: normal;
+            margin: 0 0 0 .3in;
+            padding: 0;
+        }
+        
+        .redactionReasonPageHeader ul {
+            padding: 5px;
+        }
+        
+        .redactionReasonPageHeader li {
+            list-style-type: none;
+        }
+
+        .pageConversations, .pageReasons {
+            page-break-inside: avoid;
+            margin: 0 !important;
+            padding: .25in 0 0 .1in !important;
+        }
+
+        .pageConversations h2, .pageConversations h3, .pageReasons h2 {
+            margin: 0 0 5px 0;
+            padding: 0;
+        }
+
+        .commentPage hr, .reasonPage hr {
+            margin: .0 0 .05in 0;
+        }
+
+        @media print {
+            .page, .pageIE, .pageSafari { page-break-after: always; }
+            /* required for Firefox to print all pages */
+            * { position: static !important; float: none !important; }
+        }
+    </style>
+
+</head>
+<body class='' id='print'>
+
+    <script type="text/javascript">
+        var options = {
+            vsID: '{{viewingSessionId}}',
+            pages: '{{pages}}',
+            handler: '{{handler}}',
+            orientation: '{{orientation}}',
+            isIE: {{isIE}},
+            isSafari: {{isSafari}},
+            includeMarks: {{includeMarks}},
+            includeComments: '{{includeComments}}',
+            includeReasons: '{{includeReasons}}',
+            margins: '{{margins}}'
+        };
+
+        options.pages = options.pages.split(',');
+
+        PCCViewer.PrintControl(document.body, options);
+    </script>
+</body>
+</html>
