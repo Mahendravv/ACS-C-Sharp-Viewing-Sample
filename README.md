@@ -42,5 +42,5 @@ To migrate this sample to an on-premises install of Prizm Content Connect, simpl
 
 Change the value of WebServiceScheme from "https" to "http".
 Change the value of WebServiceHost from "api.accusoft.com" to the name of your server.
-Change the value of WebServicePort from "80" to the port of your server (depending on how it is configured, but usually 18681 or 18682).
+Change the value of WebServicePort from "443" to the port of your server (depending on how it is configured, but usually 18681 or 18682).
 
